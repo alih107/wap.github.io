@@ -1,1 +1,1 @@
-# wap.github.io
+# Alikhan Amandyk CS472 WAP course July 2022
