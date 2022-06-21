@@ -1,0 +1,21 @@
+body {
+    background-color: aqua;
+}
+
+h2 {
+    color: darkred;
+}
+
+.course {
+    color: red;
+    font-size: 2em;
+}
+
+.passed {
+    text-decoration: line-through;
+}
+
+a {
+    font-style: italic;
+    font-family: "Courier New", serif;
+}
