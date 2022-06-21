@@ -19,3 +19,39 @@ a {
     font-style: italic;
     font-family: "Courier New", serif;
 }
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+.quirk:first-letter, p:first-letter {
+    font-size: 1.5em;
+}
+
+.output {
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dl, dd {
+    font-size: .9rem;
+}
+
+dd {
+    margin-bottom: 1em;
+}
