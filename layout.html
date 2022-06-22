@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Alikhan Amandyk Lab 2 CS472 WAP July 2022</title>
+    <link href="assets/css/layout.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="assets/icons/1200px-Go_Logo_Blue.svg.png" alt="Golang logo" width="100">
+            <span class="title">Welcome, Alikhan</span>
+            <button>Logout</button>
+        </div>
+        <div class="main">
+            <p>Product list</p>
+            <table class="product-list">
+                <tr>
+                    <td>Name</td><td>Price</td><td>Stock</td><td>Actions</td>
+                </tr>
+                <tr>
+                    <td>Cookie</td><td>9.99</td><td>8</td><td><img src="assets/icons/shopping-cart-icon.png" width="25"></td>
+                </tr>
+                <tr>
+                    <td>Chips</td><td>19.99</td><td>5</td><td><img src="assets/icons/shopping-cart-icon.png" width="25"></td>
+                </tr>
+                <tr>
+                    <td>Coca-cola</td><td>29.99</td><td>13</td><td><img src="assets/icons/shopping-cart-icon.png" width="25"></td>
+                </tr>
+            </table>
+            <p>Your shopping cart</p>
+            <table class="product-list">
+                <tr>
+                    <td>Name</td><td>Price</td><td>Total</td><td>Quantity</td>
+                </tr>
+                <tr>
+                    <td>Cookie</td><td>9.99</td><td>9.99</td><td><input type="number" value="1"></td>
+                </tr>
+                <tr>
+                    <td>Chips</td><td>19.99</td><td>39.98</td><td><input type="number" value="2"></td>
+                </tr>
+                <tr>
+                    <td id="td-total" colspan="4">Total: 49.97</td>
+                </tr>
+            </table>
+            <br>
+            <div class="place-order-button">
+                <button>Place order</button>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

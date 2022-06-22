@@ -1,0 +1,36 @@
+.container {
+    border: 1px solid black;
+    width: 400px;
+    height: 600px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid black;
+}
+
+.main {
+    margin: 10px;
+}
+
+.product-list, td {
+    border: 1px solid black;
+}
+
+td {
+    text-align: center;
+}
+
+#td-total {
+    border: 0;
+    text-align: end;
+}
+
+input {
+    width: 50px;
+}
+
+.place-order-button {
+    text-align: center;
+}
