@@ -1,0 +1,63 @@
+.container {
+    width: 1024px;
+    height: 768px;
+    padding: 10px;
+}
+
+.header {
+    background-color: lightgreen;
+    display: flex;
+}
+
+.title {
+    padding: 10px;
+    font-weight: bold;
+}
+
+.actions {
+    padding: 10px;
+}
+
+.body {
+    padding: 10px;
+}
+
+.register-form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.register-form-left {
+    width: 50%;
+}
+
+.register-form-right {
+    width: 50%;
+}
+
+.input-group {
+    display: flex;
+}
+
+.input-group > * {
+    padding: 5px;
+}
+
+.register-form-title {
+    padding-bottom: 20px;
+}
+
+.required:after {
+    content:" *";
+    color: red;
+}
+
+.input-group-left {
+    width: 50%;
+    float: left;
+}
+
+.input-group-right {
+    width: 50%;
+    float: right;
+}
