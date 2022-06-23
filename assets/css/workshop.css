@@ -2,6 +2,7 @@
     width: 1024px;
     height: 768px;
     padding: 10px;
+    border: 1px solid black;
 }
 
 .header {
@@ -60,4 +61,19 @@
 .input-group-right {
     width: 50%;
     float: right;
+}
+
+form label {
+    font-weight: bold;
+}
+
+.label-checkbox {
+    font-weight: normal;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    background-color: lightgray;
+
 }
