@@ -6,9 +6,8 @@ function sum(arr) {
 
 function getNewArray(arr) {
     return arr
-        .filter(x => x.length > 5)
-        .filter(x => x.includes('a'))
+        .filter(x => x.length > 5 && x.includes('a'))
 }
 
 console.log(sum([1, 2, 3, 5, 21, 25]))
-console.log(getNewArray(['Alikhan', 'apple']))
+console.log(getNewArray(['Alikhan', 'apple', 'ash', 'prior', 'appetite']))
