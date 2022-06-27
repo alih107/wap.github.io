@@ -4,7 +4,7 @@ function sum(arr) {
         .reduce((sum, x) => sum + x, 0);
 }
 
-function getNewArray(arr) {
+let getNewArray = function(arr) {
     return arr
         .filter(x => x.length > 5 && x.includes('a'));
 }
