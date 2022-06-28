@@ -1,0 +1,7 @@
+Problem 1 - How will the diagram change?
+i variable will be added into each function's LE, and with its own value - 0, 1, 2, etc.
+
+Problem 3 - When will the scheduled function run?
+After the loop
+
+What is alert going to show? - 100000000
