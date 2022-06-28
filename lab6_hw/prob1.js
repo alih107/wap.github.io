@@ -13,7 +13,17 @@ function makeArmy() {
     return shooters
 }
 
-let army = makeArmy();
-for (let i = 0; i < 10; i++) {
-    army[i]();
+function makeArmyV2() {
+    let i = 0;
+    let shooters = []
+    for (; i < 10; i++) {
+        let j = i;
+        let shooter = () => console.log(j);
+        shooters.push(shooter);
+    }
+    return shooters
 }
+
+// let army = makeArmy();
+let army = makeArmyV2();
+army.forEach(x => x());
