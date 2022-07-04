@@ -1,0 +1,12 @@
+1. Explain why do we want sometimes to use setImmediate instead of using setTimeout?
+setTimeout will place callback into timer queue, while setImmediate into check queue. What can happen is,
+timer queue can be filled with previous callbacks, and your setTimeout might not be the first one to execute during
+eventLoop cycle, while check queue will probably be empty and setImmediate callback will be executed next during the cycle.
+
+2. Explain the difference between process.nextTick and setImmediate?
+setImmediate callbacks are placed into check queue, nextTick places callback in the next phase of eventLoop.
+Typical use - use nextTick if you want a callback to be called before an eventLoop phase starts, setImmediate - when
+you want to run callback before I/O queue callbacks.
+
+3. Does Node.js has window object?
+No, it has global object, which also can be referred to as globalThis. Window object exists in browser environment
