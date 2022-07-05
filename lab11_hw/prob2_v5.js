@@ -2,5 +2,7 @@ const http = require('http')
 const fs = require('fs')
 
 http.createServer().on('request', (req, res) => {
-    res.end(fs.readFileSync('big_image.jpg'));
+    fs.readFile('big_image.jpg', (err, data) => {
+        res.end(data);
+    });
 }).listen(3000);
