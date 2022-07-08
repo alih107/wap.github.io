@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>shoppingcart-client</title>
+    <link href="carousel.css" type="text/css" rel="stylesheet">
+    <script src="main.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>List of books</h2>
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Title</th>
+                <th>ISBN</th>
+                <th>Published date</th>
+                <th>Author</th>
+                <th></th>
+            </thead>
+            <tbody id="table-books-list"></tbody>
+        </table>
+        <h3 id="message-delete" class="message"></h3>
+        <h2>Create a book</h2>
+        <div class="new-field">
+            <label for="new-title">Book title:</label>
+            <input id="new-title" placeholder="Enter title">
+        </div>
+        <div class="new-field">
+            <label for="new-isbn">Book ISBN:</label>
+            <input id="new-isbn" placeholder="Enter ISBN">
+        </div>
+        <div class="new-field">
+            <label for="new-published-date">Published date:</label>
+            <input id="new-published-date" placeholder="Enter published date">
+        </div>
+        <div class="new-field">
+            <label for="new-author">Author:</label>
+            <input id="new-author" placeholder="Enter author">
+        </div>
+        <div class="new-field">
+            <input id="new-submit" type="button" value="Save">
+        </div>
+        <h3 id="message-create" class="message"></h3>
+        <h2>Edit books</h2>
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Title</th>
+                <th>ISBN</th>
+                <th>Published date</th>
+                <th>Author</th>
+                <th></th>
+            </thead>
+            <tbody id="table-books-edit"></tbody>
+        </table>
+        <h3 id="message-update" class="message"></h3>
+    </div>
+</body>
+</html>

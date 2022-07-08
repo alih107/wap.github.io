@@ -1,0 +1,50 @@
+.container {
+    padding: 50px;
+    position: relative;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.new-field {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.new-field label {
+    display: inline-block;
+    width: 100px;
+}
+
+.new-field input[type='button'] {
+    width: 100px;
+}
+
+.edit-title-field {
+    width: 400px;
+}
+
+.edit-isbn-field {
+    width: 150px;
+}
+
+.edit-author-field {
+    width: 200px;
+}
+
+.message {
+    color: red;
+}
