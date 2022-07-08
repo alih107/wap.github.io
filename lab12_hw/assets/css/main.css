@@ -1,0 +1,44 @@
+body {
+    background-color: aliceblue;
+}
+
+h1 {
+    font-family: "Courier New", serif;
+}
+
+h2 {
+    font-family: "Courier New", serif;
+}
+
+div.item {
+    margin: 5px;
+}
+
+a {
+    text-decoration:none;
+    }
+
+a.underlined {
+    text-decoration:underline;
+}
+
+label {
+    display: block;
+    border: 1px solid rgb(230,230,230);
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+form {
+    border: 1px solid black;
+    width: 200px;
+}
+
+.home {
+    margin: 10px 5px 5px 5px;
+    font-weight: bold;
+}
+
+button {
+    margin: 5px 5px 5px 50px;
+}
