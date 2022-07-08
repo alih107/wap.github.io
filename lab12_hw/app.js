@@ -27,14 +27,14 @@ app.use(productRouter);
 
 app.use((req, res, next) => {
     res.sendFile(path.join(__dirname, 'views', '404.html'));
-})
+});
 
 app.use((err, req, res, next) => {
     console.log( `error ${err.message}`)
     const status = err.status || 400
     res.status(status).send(err.message)
-})
+});
 
 app.listen(port, () => {
     console.log(`Started listening on port ${port}... http://localhost:${port}`);
-})
+});
