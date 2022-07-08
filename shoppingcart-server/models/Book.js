@@ -18,12 +18,7 @@ module.exports = class Book {
     }
 
     save() {
-        db[this.id] = {
-            title: this.title,
-            isbn: this.isbn,
-            publishedDate: this.publishedDate,
-            author: this.author
-        }
+        db[this.id] = this;
         fs.writeFileSync(dbPath, JSON.stringify(db) , 'utf-8');
     }
 
@@ -50,6 +45,7 @@ module.exports = class Book {
 
     static deleteAll() {
         db = {};
+        counter = 0;
         fs.writeFileSync(dbPath, JSON.stringify(db) , 'utf-8');
     }
 
