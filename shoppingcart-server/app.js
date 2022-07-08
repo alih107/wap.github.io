@@ -2,7 +2,7 @@ const express = require('express')
 const app = express();
 const port = process.env.PORT || 3000;
 
-const bookRouter = require('./routes/BookRouter')
+const bookRouter = require('./routes/BookRouter');
 
 app.use(express.json());
 
@@ -23,9 +23,9 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-    console.log( `error ${err.message}`)
-    const status = err.status || 400
-    res.status(status).send(err.message)
+    console.log( `error ${err.message}`);
+    const status = err.status || 400;
+    res.status(status).send(err.message);
 });
 
 app.listen(port, () => {
