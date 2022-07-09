@@ -1,9 +1,9 @@
 const path = require('path');
 const fs = require('fs');
-let counter = 0;
-let dbPath = './data.json';
 
-let db = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data.json')));
+let counter = 0;
+let dbPath = path.join(__dirname, '..', 'assets', 'json', 'books.json');
+let db = JSON.parse(fs.readFileSync(dbPath));
 Object.keys(db).forEach((key) => {
    counter = Math.max(counter, parseInt(key, 10));
 });
