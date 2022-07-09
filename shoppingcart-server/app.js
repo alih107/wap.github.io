@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const bookRouter = require('./routes/BookRouter');
+const bookRouter = require('./routes/bookRouter');
 
 app.use(cors());
 app.use(express.json());

@@ -1,4 +1,4 @@
-const bookRouter = require('../models/Book')
+const bookRouter = require('../models/book')
 
 exports.getAll = (req, res) => {
     res.status(200).send(bookRouter.getAll());
