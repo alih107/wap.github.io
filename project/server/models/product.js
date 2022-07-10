@@ -1,31 +1,32 @@
+const baseUrl = 'http://localhost:3000'
 let db = {
     "1": {
         "id": 1,
         "name": "Bread",
         "price": 0.99,
         "stock": 15,
-        "img": "../server/assets/img/bread.png"
+        "img": `${baseUrl}/assets/img/bread.png`
     },
     "2": {
         "id": 2,
         "name": "Orange juice",
         "price": 5.99,
         "stock": 20,
-        "img": "../server/assets/img/oj.jpeg"
+        "img": `${baseUrl}/assets/img/oj.jpeg`
     },
     "3": {
         "id": 3,
         "name": "Potato chips",
         "price": 7.99,
         "stock": 25,
-        "img": "../server/assets/img/potatochips.jpg"
+        "img": `${baseUrl}/assets/img/potatochips.jpg`
     },
     "4": {
         "id": 4,
         "name": "Cheese",
         "price": 10.99,
         "stock": 30,
-        "img": "../server/assets/img/cheese.jpg"
+        "img": `${baseUrl}/assets/img/cheese.jpg`
     }
 }
 

@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', userRouter);
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 app.use((req, res, next) => {
     let token = req.headers.authorization;

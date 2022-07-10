@@ -10,7 +10,7 @@ exports.purchase = (req, res) => {
     if (result.error) {
         status = 400;
     }
-    res.status(status).json(ShoppingCart.purchase(req.user));
+    res.status(status).json(result);
 }
 
 exports.updateCart = (req, res) => {
