@@ -11,7 +11,7 @@ module.exports = class ShoppingCart {
 
     static updateCart(username, body) {
         let cart = this.getByUsername(username);
-        if (body.quantity === '0') {
+        if (body.quantity === 0) {
             delete cart[body.productId];
         } else {
             cart[body.productId] = {

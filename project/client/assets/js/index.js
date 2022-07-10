@@ -174,7 +174,10 @@ function addQuantityInput(id, value) {
         setMessage(`Quantity cannot exceed stock(${stock})`, 'shopping-cart-message');
         return;
     } else if (val + value < 0) {
-        setMessage('Quantity cannot be negative', 'shopping-cart-message');
+        setMessage(`Quantity cannot be negative`, 'shopping-cart-message');
+        return;
+    } else if (val + value === 0) {
+        document.getElementById(`cart-row-item-${id}`).remove();
         return;
     }
     val += value;
@@ -183,9 +186,11 @@ function addQuantityInput(id, value) {
 
 function updateTotalItemSpan(id) {
     let totalSpan = document.getElementById(`cart-total-item-${id}`);
-    totalSpan.innerHTML = (parseFloat(document.getElementById(
-        `cart-price-item-${id}`).innerHTML) * parseInt(document.getElementById(`cart-quantity-item-${id}`).value, 10
-    )).toFixed(2);
+    if (totalSpan) {
+        totalSpan.innerHTML = (parseFloat(document.getElementById(
+            `cart-price-item-${id}`).innerHTML) * parseInt(document.getElementById(`cart-quantity-item-${id}`).value, 10
+        )).toFixed(2);
+    }
 }
 
 function updateTotalValue() {
@@ -199,6 +204,7 @@ function updateTotalValue() {
 
 function createCartItem(cart, productId, obj) {
     let row = cart.insertRow();
+    row.id = `cart-row-item-${productId}`;
 
     row.insertCell(0).innerHTML = obj.name;
 
@@ -221,11 +227,14 @@ function createCartItem(cart, productId, obj) {
     minusButton.value = productId;
     minusButton.addEventListener('click', async function() {
         addQuantityInput(this.value, -1);
+        let quantity = document.getElementById(`cart-quantity-item-${this.value}`);
+        quantity = quantity ? quantity.value : 0;
+        console.log(quantity);
         await updateShoppingCart(
             this.value,
             document.getElementById(`product-item-name-${this.value}`).innerHTML,
             document.getElementById(`product-item-price-${this.value}`).innerHTML,
-            document.getElementById(`cart-quantity-item-${this.value}`).value
+            quantity
         );
         updateTotalItemSpan(this.value);
         updateTotalValue();
@@ -247,12 +256,14 @@ function createCartItem(cart, productId, obj) {
             } else if (val < 0) {
                 setMessage('Quantity cannot be negative', 'shopping-cart-message');
                 return;
+            } else if (val === 0) {
+                document.getElementById(`cart-row-item-${id}`).remove();
             }
             await updateShoppingCart(
                 id,
                 document.getElementById(`product-item-name-${id}`).innerHTML,
                 document.getElementById(`product-item-price-${id}`).innerHTML,
-                document.getElementById(`cart-quantity-item-${id}`).value
+                val
             );
             updateTotalItemSpan(id);
             updateTotalValue();
