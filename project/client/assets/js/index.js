@@ -38,7 +38,10 @@ window.onload = async function () {
             await showCart();
             updateTotalValue();
         }
-    })
+    });
+    document.getElementById('refreshBtn').addEventListener('click', function() {
+        location.reload();
+    });
 }
 
 async function login() {
@@ -82,7 +85,6 @@ function showLogin() {
 async function showCart() {
     document.getElementById('login-container').style.display = 'none';
     document.getElementById('shoppingcart-container').style.display = 'block';
-
     await loadCart();
 }
 
@@ -123,12 +125,16 @@ async function loadProductList() {
                 let obj = {
                     name: document.getElementById(`product-item-name-${this.value}`).innerHTML,
                     price: document.getElementById(`product-item-price-${this.value}`).innerHTML,
-                    quantity: '0',
+                    quantity: '1',
                 };
-                cartItem = createCartItem(cart, this.value, obj);
+                createCartItem(cart, this.value, obj);
+                await updateShoppingCart(this.value, obj.name, obj.price, obj.quantity);
+                updateTotalItemSpan(this.value);
+                updateTotalValue();
+                await showCart();
+            } else {
+                cartItem.dispatchEvent(new Event('click'));
             }
-            cartItem.dispatchEvent(new Event('click'));
-            await showCart();
         });
         row.insertCell(5).appendChild(btn);
     });
@@ -244,11 +250,11 @@ function createCartItem(cart, productId, obj) {
             }
             await updateShoppingCart(
                 id,
-                document.getElementById(`product-item-name-${this.value}`).innerHTML,
-                document.getElementById(`product-item-price-${this.value}`).innerHTML,
-                document.getElementById(`cart-quantity-item-${this.value}`).value
+                document.getElementById(`product-item-name-${id}`).innerHTML,
+                document.getElementById(`product-item-price-${id}`).innerHTML,
+                document.getElementById(`cart-quantity-item-${id}`).value
             );
-            updateTotalItemSpan(this.value);
+            updateTotalItemSpan(id);
             updateTotalValue();
         }
     })

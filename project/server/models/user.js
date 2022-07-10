@@ -1,6 +1,7 @@
 const db = {
     "alih107": "123",
-    "admin": "admin"
+    "admin": "admin",
+    "root": "root"
 }
 
 console.log(db);
