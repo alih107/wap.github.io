@@ -208,6 +208,10 @@ function updateTotalValue() {
     for (let i = 0; i < items.length; i++) {
         val += parseFloat(items[i].innerHTML);
     }
+    if (val === 0) {
+        document.getElementById('shopping-cart-container').style.display = 'none';
+        document.getElementById('shopping-cart-empty-message').style.display = 'block';
+    }
     document.getElementById('total-value').innerHTML = val.toFixed(2);
 }
 
