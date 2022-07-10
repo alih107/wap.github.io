@@ -125,7 +125,7 @@ async function loadProductList() {
         row.insertCell(4).appendChild(stockSpan);
 
         let btn = document.createElement('button');
-            btn.innerHTML = `<img src="../server/assets/img/shopping-cart-icon.png" alt="cart image" class="cart-icon">`;
+            btn.innerHTML = `<img src="../server/assets/img/shopping-cart-icon.png" alt="cart image" class="cart-icon" title="Add to cart">`;
         btn.value = p.id;
         btn.addEventListener('click', async function() {
             let stock = parseInt(document.getElementById(`product-item-stock-${this.value}`).innerHTML, 10);
