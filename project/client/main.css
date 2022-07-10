@@ -13,6 +13,14 @@ table {
     text-align: center;
 }
 
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.table-header {
+    background-color: lightgreen;
+}
+
 .container {
     padding-left: 100px;
     padding-top: 100px;
@@ -46,7 +54,7 @@ table {
 }
 
 .product-image {
-    width: 50px;
+    width: 75px;
 }
 
 .cart-icon {
