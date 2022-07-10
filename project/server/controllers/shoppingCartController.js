@@ -5,7 +5,12 @@ exports.getByUserName = (req, res) => {
 };
 
 exports.purchase = (req, res) => {
-    res.json(ShoppingCart.purchase(req.user));
+    let status = 200;
+    let result = ShoppingCart.purchase(req.user);
+    if (result.error) {
+        status = 400;
+    }
+    res.status(status).json(ShoppingCart.purchase(req.user));
 }
 
 exports.updateCart = (req, res) => {
