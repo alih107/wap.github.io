@@ -100,8 +100,8 @@ tr:nth-child(even) {
 }
 
 .header-elem-space {
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 100px;
+    padding-right: 100px;
     font-size: 25px;
     font-weight: bold;
 }

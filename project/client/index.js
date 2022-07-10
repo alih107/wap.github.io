@@ -16,11 +16,8 @@ window.onload = async function () {
         setMessage('', 'login-message');
     }
     document.getElementById('login-submit').addEventListener('click', login);
-    document.getElementById('login-pass').addEventListener('keyup', async event => {
-        if (event.key === 'Enter') {
-            await login();
-        }
-    });
+    document.getElementById('login-user').addEventListener('keyup', pressEnterLogin);
+    document.getElementById('login-pass').addEventListener('keyup', pressEnterLogin);
     document.getElementById('logout-submit').addEventListener('click', async function() {
         localStorage.removeItem('accessToken');
         removeItemElements();
@@ -29,7 +26,7 @@ window.onload = async function () {
     document.getElementById('placeBtn').addEventListener('click', async function() {
         let options = getAuthOptions();
         options.method = 'POST';
-        let response = await fetch(baseUrl + 'shopping-cart/purchase', options);
+        let response = await fetch(baseUrl + 'shopping-carts/purchase', options);
         let data = await response.json();
         if (data.error) {
             setMessage(data.error, 'shopping-cart-message');
@@ -47,12 +44,18 @@ window.onload = async function () {
     document.getElementById('clearCartBtn').addEventListener('click', async function() {
         let options = getAuthOptions();
         options.method = 'DELETE';
-        await fetch(baseUrl + 'shopping-cart', options);
+        await fetch(baseUrl + 'shopping-carts', options);
         removeItemElements();
         await loadProductList();
         await showCart();
         updateTotalValue();
     })
+}
+
+async function pressEnterLogin(event) {
+    if (event.key === 'Enter') {
+        await login();
+    }
 }
 
 async function login() {
@@ -158,7 +161,7 @@ async function loadProductList() {
 }
 
 async function loadCart() {
-    let result = await fetch(baseUrl + 'shopping-cart', getAuthOptions());
+    let result = await fetch(baseUrl + 'shopping-carts', getAuthOptions());
     let data = await result.json();
     if (Object.keys(data).length === 0) {
         document.getElementById('shopping-cart-container').style.display = 'none';
@@ -315,7 +318,7 @@ async function updateQuantityEvent(event) {
 }
 
 async function updateShoppingCart(productId, name, price, quantity) {
-    let response = await fetch(baseUrl + 'shopping-cart', {
+    let response = await fetch(baseUrl + 'shopping-carts', {
         method: 'PATCH',
         body: JSON.stringify({
             'productId': productId,
