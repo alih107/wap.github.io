@@ -128,6 +128,11 @@ async function loadProductList() {
             btn.innerHTML = `<img src="../server/assets/img/shopping-cart-icon.png" alt="cart image" class="cart-icon">`;
         btn.value = p.id;
         btn.addEventListener('click', async function() {
+            let stock = parseInt(document.getElementById(`product-item-stock-${this.value}`).innerHTML, 10);
+            if (stock === 0) {
+                setMessage(`Sorry, out of stock`, 'shopping-cart-message');
+                return;
+            }
             let cartItem = document.getElementById(`cart-plus-item-${this.value}`);
             if (!cartItem) {
                 let cart = document.getElementById('table-shopping-list');
@@ -178,18 +183,17 @@ function getAuthOptions() {
 function addQuantityInput(id, value) {
     let quantityInput = document.getElementById(`cart-quantity-item-${id}`);
     let stock = parseInt(document.getElementById(`product-item-stock-${id}`).innerHTML, 10);
-    let val = parseInt(quantityInput.value, 10);
-    if (val + value > stock) {
-        setMessage(`Quantity cannot exceed stock(${stock})`, 'shopping-cart-message');
+    let val = parseInt(quantityInput.value, 10) + value;
+    if (val > stock) {
+        setMessage(`Sorry, you've reached maximum stock(${stock})`, 'shopping-cart-message');
         return;
-    } else if (val + value < 0) {
+    } else if (val < 0) {
         setMessage(`Quantity cannot be negative`, 'shopping-cart-message');
         return;
-    } else if (val + value === 0) {
+    } else if (val === 0) {
         document.getElementById(`cart-row-item-${id}`).remove();
         return;
     }
-    val += value;
     quantityInput.value = val;
 }
 
@@ -264,7 +268,7 @@ function createCartItem(cart, productId, obj) {
             let val = parseInt(this.value, 10);
             let stock = parseInt(document.getElementById(`product-item-stock-${id}`).innerHTML, 10);
             if (val > stock) {
-                setMessage(`Quantity cannot exceed stock(${stock})`, 'shopping-cart-message');
+                setMessage(`Sorry, you've reached maximum stock(${stock})`, 'shopping-cart-message');
                 return;
             } else if (val < 0) {
                 setMessage('Quantity cannot be negative', 'shopping-cart-message');
