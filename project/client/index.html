@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WAP project</title>
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/img/shopping-cart-icon.png">
+    <script src="assets/js/index.js"></script>
+</head>
+<body>
+    <div class="container" id="login-container">
+        <div class="header">
+            <div class="header-elem">
+                <img src="assets/img/logo.png" alt="Golang logo" width="100">
+            </div>
+            <div class="header-elem">
+                <div class="login-item">
+                    <label for="login-user">Login: </label>
+                    <input type="text" id="login-user">
+                </div>
+                <div class="login-item">
+                    <label for="login-pass">Password: </label>
+                    <input type="password" id="login-pass">
+                </div>
+            </div>
+            <div class="header-elem">
+                <button id="login-submit">Login</button>
+            </div>
+        </div>
+        <div class="footer">
+            <h1>Welcome to Shopping cart!</h1>
+            <h2 id="login-message"></h2>
+        </div>
+    </div>
+
+    <div class="container" id="shoppingcart-container">
+        <div class="header">
+            <div class="header-elem">
+                <img src="assets/img/logo.png" alt="Golang logo" width="100">
+            </div>
+            <div class="header-elem">
+                <p id="header-username"></p>
+            </div>
+            <div class="header-elem">
+                <button id="logout-submit">Logout</button>
+            </div>
+        </div>
+        <div class="main">
+            <h1>Product list</h1>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+                <tbody id="table-product-list"></tbody>
+            </table>
+            <h1>Shopping cart</h1>
+            <div id="shopping-cart-container">
+                <table id="table-shopping-cart">
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Quantity</th>
+                    </tr>
+                    <tbody id="table-shopping-list"></tbody>
+                </table>
+                <p>
+                    <label for="total-value">Total: </label>
+                    <span id="total-value">0</span>
+                </p>
+                <button id="placeBtn">Place order</button>
+            </div>
+            <h2 id="shopping-cart-empty-message">There is no item in your shopping cart!</h2>
+        </div>
+        <h2 id="shopping-cart-message"></h2>
+    </div>
+</body>
+</html>

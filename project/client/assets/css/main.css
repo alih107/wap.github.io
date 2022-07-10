@@ -1,0 +1,74 @@
+body {
+    background-color: aliceblue;
+}
+
+.container {
+    padding-left: 100px;
+    padding-top: 100px;
+    width: 50%;
+}
+
+.header {
+    border-bottom: 1px solid black;
+}
+
+.header-elem {
+    display: inline-block;
+}
+
+.login-item {
+    padding: 8px;
+}
+
+.login-item label {
+    display: inline-block;
+    width: 100px;
+}
+
+#login-message {
+    color: red;
+}
+
+.footer {
+    text-align: center;
+}
+
+.product-image {
+    width: 50px;
+}
+
+.cart-icon {
+    width: 25px;
+}
+
+#total-value {
+    border: none;
+    display: inline;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0;
+    width: auto;
+    background: aliceblue;
+}
+
+.plus-sign {
+    width: 15px;
+    padding-left: 10px;
+}
+
+.minus-sign {
+    width: 15px;
+    padding-right: 10px;
+}
+
+.message-error {
+    color: red;
+}
+
+.message-success {
+    color: green;
+}
+
+.quantity-field {
+    width: 50px;
+}
