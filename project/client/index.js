@@ -262,30 +262,8 @@ function createCartItem(cart, productId, obj) {
     quantityInput.id = `cart-quantity-item-${productId}`;
     quantityInput.value = obj.quantity;
     quantityInput.className = 'quantity-field';
-    quantityInput.addEventListener('keypress', async function(event) {
-        if (event.key === 'Enter') {
-            let id = this.id.split('-')[3];
-            let val = parseInt(this.value, 10);
-            let stock = parseInt(document.getElementById(`product-item-stock-${id}`).innerHTML, 10);
-            if (val > stock) {
-                setMessage(`Sorry, you've reached maximum stock(${stock})`, 'shopping-cart-message');
-                return;
-            } else if (val < 0) {
-                setMessage('Quantity cannot be negative', 'shopping-cart-message');
-                return;
-            } else if (val === 0) {
-                document.getElementById(`cart-row-item-${id}`).remove();
-            }
-            await updateShoppingCart(
-                id,
-                document.getElementById(`product-item-name-${id}`).innerHTML,
-                document.getElementById(`product-item-price-${id}`).innerHTML,
-                val
-            );
-            updateTotalItemSpan(id);
-            updateTotalValue();
-        }
-    })
+    quantityInput.addEventListener('keypress', updateQuantityEvent);
+    quantityInput.addEventListener('blur', updateQuantityEvent);
     quantityCell.appendChild(quantityInput);
 
     let plusButton = document.createElement('img');
@@ -306,6 +284,31 @@ function createCartItem(cart, productId, obj) {
     });
     quantityCell.appendChild(plusButton);
     return plusButton;
+}
+
+async function updateQuantityEvent(event) {
+    if (event.key === 'Enter' || event.which === 0) {
+        let id = this.id.split('-')[3];
+        let val = parseInt(this.value, 10);
+        let stock = parseInt(document.getElementById(`product-item-stock-${id}`).innerHTML, 10);
+        if (val > stock) {
+            setMessage(`Sorry, you've reached maximum stock(${stock})`, 'shopping-cart-message');
+            return;
+        } else if (val < 0) {
+            setMessage('Quantity cannot be negative', 'shopping-cart-message');
+            return;
+        } else if (val === 0) {
+            document.getElementById(`cart-row-item-${id}`).remove();
+        }
+        await updateShoppingCart(
+            id,
+            document.getElementById(`product-item-name-${id}`).innerHTML,
+            document.getElementById(`product-item-price-${id}`).innerHTML,
+            val
+        );
+        updateTotalItemSpan(id);
+        updateTotalValue();
+    }
 }
 
 async function updateShoppingCart(productId, name, price, quantity) {
