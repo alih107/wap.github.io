@@ -42,6 +42,15 @@ window.onload = async function () {
     document.getElementById('refreshBtn').addEventListener('click', function() {
         location.reload();
     });
+    document.getElementById('clearCartBtn').addEventListener('click', async function() {
+        let options = getAuthOptions();
+        options.method = 'DELETE';
+        await fetch(baseUrl + 'shopping-cart', options);
+        removeItemElements();
+        await loadProductList();
+        await showCart();
+        updateTotalValue();
+    })
 }
 
 async function login() {
@@ -116,7 +125,7 @@ async function loadProductList() {
         row.insertCell(4).appendChild(stockSpan);
 
         let btn = document.createElement('button');
-        btn.innerHTML = `<img src="assets/img/shopping-cart-icon.png" alt="cart image" class="cart-icon">`;
+            btn.innerHTML = `<img src="../server/assets/img/shopping-cart-icon.png" alt="cart image" class="cart-icon">`;
         btn.value = p.id;
         btn.addEventListener('click', async function() {
             let cartItem = document.getElementById(`cart-plus-item-${this.value}`);
@@ -221,7 +230,7 @@ function createCartItem(cart, productId, obj) {
 
     let quantityCell = row.insertCell(3);
     let minusButton = document.createElement('img');
-    minusButton.src = 'assets/img/minus.png';
+    minusButton.src = '../server/assets/img/minus.png';
     minusButton.className = 'minus-sign';
     minusButton.id = `cart-minus-item-${productId}`;
     minusButton.value = productId;
@@ -272,7 +281,7 @@ function createCartItem(cart, productId, obj) {
     quantityCell.appendChild(quantityInput);
 
     let plusButton = document.createElement('img');
-    plusButton.src = 'assets/img/plus.png';
+    plusButton.src = '../server/assets/img/plus.png';
     plusButton.className = 'plus-sign';
     plusButton.id = `cart-plus-item-${productId}`;
     plusButton.value = productId;

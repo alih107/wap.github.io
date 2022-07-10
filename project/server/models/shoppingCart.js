@@ -33,4 +33,8 @@ module.exports = class ShoppingCart {
         }
         return result;
     }
+
+    static clearCart(username) {
+        db[username] = {};
+    }
 };

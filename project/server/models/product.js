@@ -4,28 +4,28 @@ let db = {
         "name": "Bread",
         "price": 0.99,
         "stock": 15,
-        "img": "assets/img/bread.png"
+        "img": "../server/assets/img/bread.png"
     },
     "2": {
         "id": 2,
         "name": "Orange juice",
         "price": 5.99,
         "stock": 20,
-        "img": "assets/img/oj.jpeg"
+        "img": "../server/assets/img/oj.jpeg"
     },
     "3": {
         "id": 3,
         "name": "Potato chips",
         "price": 7.99,
         "stock": 25,
-        "img": "assets/img/potatochips.jpg"
+        "img": "../server/assets/img/potatochips.jpg"
     },
     "4": {
         "id": 4,
         "name": "Cheese",
         "price": 10.99,
         "stock": 30,
-        "img": "assets/img/cheese.jpg"
+        "img": "../server/assets/img/cheese.jpg"
     }
 }
 

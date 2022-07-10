@@ -11,3 +11,8 @@ exports.purchase = (req, res) => {
 exports.updateCart = (req, res) => {
     res.json(ShoppingCart.updateCart(req.user, req.body));
 }
+
+exports.clearCart = (req, res) => {
+    ShoppingCart.clearCart(req.user);
+    res.status(200).send();
+}
