@@ -7,6 +7,7 @@ window.onload = async function () {
     if (accessToken) {
         await showCart();
         await loadProductList();
+        setUsernameHeader();
         updateTotalValue();
     } else {
         showLogin();
@@ -22,6 +23,7 @@ window.onload = async function () {
     });
     document.getElementById('logout-submit').addEventListener('click', async function() {
         localStorage.removeItem('accessToken');
+        removeItemElements();
         showLogin();
     });
     document.getElementById('placeBtn').addEventListener('click', async function() {
@@ -73,6 +75,7 @@ async function login() {
         localStorage.setItem('accessToken', data.accessToken);
         await showCart();
         await loadProductList();
+        setUsernameHeader();
         updateTotalValue();
     }
 }
@@ -341,4 +344,10 @@ function removeItemElements() {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
+}
+
+function setUsernameHeader() {
+    let headerUserName = document.getElementById('header-username');
+    let username = localStorage.getItem('accessToken').split('-')[0];
+    headerUserName.innerHTML = `Welcome, <u>${username}!</u>`
 }

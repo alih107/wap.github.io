@@ -96,4 +96,12 @@ tr:nth-child(even) {
 
 #total-paragraph {
     text-align: right;
+    font-size: 30px;
+}
+
+.header-elem-space {
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 25px;
+    font-weight: bold;
 }
