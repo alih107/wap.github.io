@@ -6,33 +6,17 @@ const port = process.env.PORT || 3000;
 
 const userRouter = require('./routes/userRouter');
 const productRouter = require('./routes/productRouter');
-const shoppingCartRouter = require('./routes/shoppingCartRouter')
+const shoppingCartRouter = require('./routes/shoppingCartRouter');
+const authMiddleware = require('./middleware/authMiddleware')
 
 app.use(cors());
 app.use(express.json());
 
-app.use((req, res, next) => {
-    if (req.originalUrl !== '/favicon.ico') {
-        console.info(`${req.method} ${req.originalUrl}`);
-    }
-    next();
-});
 
 app.use('/', userRouter);
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-app.use((req, res, next) => {
-    let token = req.headers.authorization;
-    if (token && token !== 'null') {
-        req.user = token.split('-')[0];
-        next();
-    } else {
-        res.status(401).json({
-            "error": "Not authorized, no access token"
-        });
-    }
-})
-
+app.use(authMiddleware.checkAuth);
 app.use('/products', productRouter);
 app.use('/shopping-carts', shoppingCartRouter);
 

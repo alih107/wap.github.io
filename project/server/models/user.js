@@ -18,4 +18,7 @@ module.exports = class User {
         };
     }
 
+    static doesUserExist(username) {
+        return db[username] !== undefined;
+    }
 }
