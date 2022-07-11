@@ -1,19 +1,13 @@
-const User = require('../models/user')
+const authUtils = require('../utils/auth')
 
 exports.checkAuth = (req, res, next) => {
-    let token = req.headers.authorization;
-    if (token && token !== 'null') {
-        let username = token.split('-')[0];
-        if (!User.doesUserExist(username)) {
-            res.status(401).json({
-                "error": "Such user does not exist"
-            });
-        }
+    let username = authUtils.extractUser(req.headers.authorization);
+    if (username) {
         req.user = username;
         next();
     } else {
         res.status(401).json({
-            "error": "Not authorized, no access token"
+            "error": "Not authorized"
         });
     }
 }

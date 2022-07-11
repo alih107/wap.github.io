@@ -3,17 +3,18 @@ let baseUrl = 'http://localhost:3000/'
 window.onload = async function () {
     let table = document.getElementById('table-product-list');
     table.innerHTML = '';
-    let accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
+    let options = getAuthOptions();
+    let result = await fetch(baseUrl + 'check-user', options);
+    let data = await result.json();
+    if (!data.error) {
         await showCart();
         await loadProductList();
         setUsernameHeader();
         updateTotalValue();
     } else {
-        showLogin();
+        forceLogout();
         user = document.getElementById('login-user');
         user.focus();
-        setMessage('', 'login-message');
     }
     document.getElementById('login-submit').addEventListener('click', login);
     document.getElementById('login-user').addEventListener('keyup', pressEnterLogin);
@@ -25,9 +26,15 @@ window.onload = async function () {
     });
     document.getElementById('placeBtn').addEventListener('click', async function() {
         let options = getAuthOptions();
+        let result = await fetch(baseUrl + 'check-user', options);
+        let data = await result.json();
+        if (data.error) {
+            forceLogout(data.error);
+            return;
+        }
         options.method = 'POST';
         let response = await fetch(baseUrl + 'shopping-carts/purchase', options);
-        let data = await response.json();
+        data = await response.json();
         if (data.error) {
             setMessage(data.error, 'shopping-cart-message');
         } else {
@@ -37,9 +44,6 @@ window.onload = async function () {
             await showCart();
             updateTotalValue();
         }
-    });
-    document.getElementById('refreshBtn').addEventListener('click', function() {
-        location.reload();
     });
     document.getElementById('clearCartBtn').addEventListener('click', async function() {
         let options = getAuthOptions();
@@ -134,6 +138,13 @@ async function loadProductList() {
             btn.innerHTML = `<img src="../server/assets/img/shopping-cart-icon.png" alt="cart image" class="cart-icon" title="Add to cart">`;
         btn.value = p.id;
         btn.addEventListener('click', async function() {
+            let result = await fetch(baseUrl + 'check-user', getAuthOptions());
+            let data = await result.json();
+            if (data.error) {
+                forceLogout(data.error);
+                return;
+            }
+            console.log('reached here');
             let stock = parseInt(document.getElementById(`product-item-stock-${this.value}`).innerHTML, 10);
             if (stock === 0) {
                 setMessage(`Sorry, out of stock`, 'shopping-cart-message');
@@ -153,6 +164,7 @@ async function loadProductList() {
                 updateTotalValue();
                 await showCart();
             } else {
+                console.log(cartItem);
                 cartItem.dispatchEvent(new Event('click'));
             }
         });
@@ -249,6 +261,12 @@ function createCartItem(cart, productId, obj) {
     minusButton.id = `cart-minus-item-${productId}`;
     minusButton.value = productId;
     minusButton.addEventListener('click', async function() {
+        let result = await fetch(baseUrl + 'check-user', getAuthOptions());
+        let data = await result.json();
+        if (data.error) {
+            forceLogout(data.error);
+            return;
+        }
         addQuantityInput(this.value, -1);
         let quantity = document.getElementById(`cart-quantity-item-${this.value}`);
         quantity = quantity ? quantity.value : 0;
@@ -278,6 +296,12 @@ function createCartItem(cart, productId, obj) {
     plusButton.id = `cart-plus-item-${productId}`;
     plusButton.value = productId;
     plusButton.addEventListener('click', async function() {
+        let result = await fetch(baseUrl + 'check-user', getAuthOptions());
+        let data = await result.json();
+        if (data.error) {
+            forceLogout(data.error);
+            return;
+        }
         addQuantityInput(this.value, 1);
         await updateShoppingCart(
             this.value,
@@ -353,4 +377,10 @@ function setUsernameHeader() {
     let headerUserName = document.getElementById('header-username');
     let username = localStorage.getItem('accessToken').split('-')[0];
     headerUserName.innerHTML = `Welcome, <u>${username}!</u>`
+}
+
+function forceLogout(errorMsg='') {
+    localStorage.removeItem('accessToken');
+    showLogin();
+    setMessage(errorMsg, 'login-message');
 }

@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const authUtils = require('../utils/auth')
 
 exports.login = (req, res) => {
     let result = User.login(req.body.user, req.body.pass);
@@ -9,11 +10,15 @@ exports.login = (req, res) => {
     }
 };
 
-exports.logout = (req, res) => {
-    User.logout();
-    res.status(200).send();
-}
-
-exports.getCurrentUser = (req, res) => {
-    res.status(200).json(User.getCurrentUser());
+exports.checkUser = (req, res) => {
+    let result = User.doesUserExist(authUtils.extractUser(req.headers.authorization));
+    if (result) {
+        res.status(200).json({
+            'success': true
+        });
+    }  else {
+        res.status(401).json({
+            'error': 'Please authorize'
+        })
+    }
 };
