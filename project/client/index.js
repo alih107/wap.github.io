@@ -47,6 +47,12 @@ window.onload = async function () {
     });
     document.getElementById('clearCartBtn').addEventListener('click', async function() {
         let options = getAuthOptions();
+        let result = await fetch(baseUrl + 'check-user', options);
+        let data = await result.json();
+        if (data.error) {
+            forceLogout(data.error);
+            return;
+        }
         options.method = 'DELETE';
         await fetch(baseUrl + 'shopping-carts', options);
         removeItemElements();
@@ -144,7 +150,6 @@ async function loadProductList() {
                 forceLogout(data.error);
                 return;
             }
-            console.log('reached here');
             let stock = parseInt(document.getElementById(`product-item-stock-${this.value}`).innerHTML, 10);
             if (stock === 0) {
                 setMessage(`Sorry, out of stock`, 'shopping-cart-message');
@@ -164,7 +169,6 @@ async function loadProductList() {
                 updateTotalValue();
                 await showCart();
             } else {
-                console.log(cartItem);
                 cartItem.dispatchEvent(new Event('click'));
             }
         });
@@ -270,7 +274,6 @@ function createCartItem(cart, productId, obj) {
         addQuantityInput(this.value, -1);
         let quantity = document.getElementById(`cart-quantity-item-${this.value}`);
         quantity = quantity ? quantity.value : 0;
-        console.log(quantity);
         await updateShoppingCart(
             this.value,
             document.getElementById(`product-item-name-${this.value}`).innerHTML,
